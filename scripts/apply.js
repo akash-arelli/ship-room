@@ -22,8 +22,11 @@ function refuse(message) {
 if (!branch) refuse("missing --branch");
 if (!requestedBy) refuse("missing --requested-by");
 if (!approvedBy) refuse("missing --approved-by. A human must approve.");
+if (/^ship-/i.test(approvedBy.trim())) {
+  refuse("an agent cannot approve. A human must approve.");
+}
 if (approvedBy.trim().toLowerCase() === requestedBy.trim().toLowerCase()) {
-  refuse("the approver must be different from the requester");
+  refuse("the approver must be different from whoever prepared or requested the change");
 }
 if (!reason) refuse("missing --reason");
 
