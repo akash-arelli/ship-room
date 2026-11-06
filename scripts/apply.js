@@ -41,9 +41,15 @@ git("checkout main");
 git(`merge --no-ff ${branch} -m "Merge ${branch}, approved by ${approvedBy}"`);
 
 const when = new Date().toISOString();
+const decisionsFile = path.join(root, "decisions.md");
+const existing = fs.existsSync(decisionsFile) ? fs.readFileSync(decisionsFile, "utf8") : "";
+const lead = existing === "" || existing.endsWith("\n\n") ? "" : existing.endsWith("\n") ? "\n" : "\n\n";
+const isFirst = !/^- /m.test(existing);
+// Keep one entry per line. A blank line separates the header from the first entry only.
+const separator = isFirst ? lead : existing.endsWith("\n") ? "" : "\n";
 fs.appendFileSync(
-  path.join(root, "decisions.md"),
-  `\n- ${when} | ${branch} | requested by ${requestedBy} | approved by ${approvedBy} | ${reason}\n`
+  decisionsFile,
+  `${separator}- ${when} | ${branch} | requested by ${requestedBy} | approved by ${approvedBy} | ${reason}\n`
 );
 git("add decisions.md");
 git(`commit -m "Record decision for ${branch}"`);
