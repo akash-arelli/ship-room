@@ -1,0 +1,13 @@
+{
+  "run_id": "4821",
+  "branch": "main",
+  "commit": "a1b2c3d",
+  "jobs": [
+    { "name": "test-checkout", "status": "passed" },
+    {
+      "name": "build-checkout",
+      "status": "failed",
+      "error": "image checkout:2.14.0-rc1 not found in registry"
+    }
+  ]
+}

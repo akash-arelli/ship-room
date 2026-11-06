@@ -1,0 +1,7 @@
+{
+  "image": "checkout:2.13.2",
+  "flags": { "NEW_PAYMENTS": false },
+  "env": {
+    "LOG_LEVEL": "info"
+  }
+}

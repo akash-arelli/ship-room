@@ -1,0 +1,9 @@
+{
+  "image": "checkout:2.14.0",
+  "flags": { "NEW_PAYMENTS": true },
+  "env": {
+    "SEARCH_TIMEOUT_MS": "800",
+    "CART_CACHE_TTL": "60",
+    "LOG_LEVEL": "info"
+  }
+}

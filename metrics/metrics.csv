@@ -1,0 +1,7 @@
+time,service,error_rate_pct
+08:00,checkout,0.5
+08:30,checkout,0.6
+09:00,checkout,0.5
+09:30,checkout,0.5
+09:42,checkout,9.1
+10:00,checkout,8.7
